@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>به زودی</title>
+
+
+    <style>
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%); /* IE 9 */
+            -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+        }
+
+    </style>
+</head>
+<body>
+
+<img src="{% get_media_prefix%}logo.jpg" style="margin-top: 80px">
+
+</body>
+</html>
