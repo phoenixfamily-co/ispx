@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### Django template
 *.log
 *.pot
@@ -168,3 +169,9 @@ cython_debug/
 
 
 !/IranianShiningPhoenix/settings.py
+=======
+
+.idea/IranianShiningPhoenix.iml
+/.idea
+/.idea
+>>>>>>> 6350fbf (initializing)
