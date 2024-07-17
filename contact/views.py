@@ -74,7 +74,7 @@ class ContactViewSet(viewsets.ModelViewSet):
         if 'file' in request.data:
             request.data['file'] = request.FILES.get('file')
 
-        return super().create(request, *args, **kwargs)
+        return super().update(request, *args, **kwargs)
 
     def partial_update(self, request, *args, **kwargs):
         if 'file' in request.data:
