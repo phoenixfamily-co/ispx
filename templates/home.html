@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
 
 
@@ -12,34 +14,36 @@
     {% bootstrap_javascript %}
     <style>
 
-          .logoHolder {
-            width: 100%;
-            position: absolute;
-            margin-top: 20px;
-            display: inline-flex;
-            z-index: 10 !important;
-            direction: ltr;
-            align-content: center;
-            align-items: center;
-            text-align: center;
-            justify-content: center;
-
+         * {
+            box-sizing: border-box
         }
+
+          .logoHolder {
+              width: 100%;
+              position: absolute;
+              margin-top: 20px;
+              display: inline-flex;
+              z-index: 10 !important;
+              direction: ltr;
+              align-content: center;
+              align-items: center;
+              text-align: center;
+              justify-content: center;
+          }
 
         .logo {
             width: 112px;
             height: 100px;
             border-radius: 25px;
-
         }
 
-         .selected{
-            position: relative;
-            width: 100%;
-            height: auto;
-            text-align: center;
-            justify-content: center;
-        }
+         .selected {
+             position: relative;
+             width: 100%;
+             height: auto;
+             text-align: center;
+             justify-content: center;
+         }
 
           .left-seo{
               float: left;
