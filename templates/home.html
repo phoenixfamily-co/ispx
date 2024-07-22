@@ -138,6 +138,10 @@
               background-color: rgba(0, 0, 0, 0.5);
           }
 
+          .carousel-inner {
+              height: 400px;
+          }
+
 
          @media screen and (max-width: 768px) {
 
@@ -218,6 +222,9 @@
      .copy{
          font-size: 12px;
         }
+     .carousel-inner{
+         height: 350px;
+     }
 
          }
 
@@ -265,7 +272,7 @@
 
 
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner" style="height: 400px">
+  <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="{% get_media_prefix%}dry-wash.png" class="d-block w-100"  alt="...">
     </div>
