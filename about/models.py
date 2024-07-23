@@ -1,3 +1,12 @@
 from django.db import models
 
-# Create your models here.
+
+class About(models.Model):
+    company_name = models.CharField(max_length=255)
+    title = models.TextField()
+    description = models.TextField()
+    logo1 = models.ImageField(upload_to='uploads/', null=True, blank=True)
+    logo2 = models.ImageField(upload_to='uploads/', null=True, blank=True)
+    side_image = models.ImageField(upload_to='uploads/', null=True, blank=True)
+    telegram_id = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField()
