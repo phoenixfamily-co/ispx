@@ -12,7 +12,7 @@ router.register(prefix=r'about-us', viewset=AboutViewSet)
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path("", about_view, name='view'),
 ]
 
