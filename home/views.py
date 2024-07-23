@@ -6,6 +6,6 @@ from django.views.decorators.cache import cache_page
 @cache_page(60 * 15)
 def home_view(request):
     template = loader.get_template('home.html')
-    context = []
+    context = {}
 
     return HttpResponse(template.render(context, request))

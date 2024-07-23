@@ -9,6 +9,6 @@ from django.views.generic import TemplateView
 @cache_page(60 * 15)
 def about_view(request):
     template = loader.get_template('about.html')
-    context = []
+    context = {}
 
     return HttpResponse(template.render(context, request))
