@@ -2,10 +2,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import AboutView
+from .views import about_view
+
+app_name = 'about'
+
 
 urlpatterns = [
-    path("", AboutView.as_view()),
+    path("", about_view, name='view'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
