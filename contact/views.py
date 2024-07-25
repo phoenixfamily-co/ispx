@@ -1,14 +1,21 @@
+from django.http import HttpResponse
+from django.template import loader
+from django.views.decorators.cache import cache_page
 from rest_framework import viewsets
 from .serializers import ContactSerializer
 from django.core.mail import EmailMessage
-# from django.conf import settings
 from IranianShiningPhoenix import settings
-from rest_framework.response import Response
-from rest_framework import status
 from .models import ContactInfo
 
 
 # Create your views here.
+@cache_page(60 * 15)
+def contract_view(request):
+    template = loader.get_template('contract.html')
+    context = {}
+
+    return HttpResponse(template.render(context, request))
+
 
 class ContactViewSet(viewsets.ModelViewSet):
     queryset = ContactInfo.objects.all()
