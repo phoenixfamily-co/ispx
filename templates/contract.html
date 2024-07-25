@@ -78,7 +78,7 @@ a
         .info {
             width: 100%;
             margin-top: 10%;
-            display: inline-table;
+            display: table;
 
         }
 
@@ -156,7 +156,7 @@ a
   <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
   <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="{% url 'home:view' %}" style="text-decoration: underline">Home</a>
+          <a class="nav-link active text-white" aria-current="page" href="{% url 'home:view' %}" >Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="#">Services</a>
@@ -165,7 +165,7 @@ a
           <a class="nav-link text-white" href="#">Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Contact</a>
+          <a class="nav-link text-white" href="#" style="text-decoration: underline" >Contact</a>
         </li>
           <li class="nav-item">
           <a class="nav-link text-white" href="{% url 'about:view' %}">About</a>
