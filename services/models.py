@@ -6,4 +6,4 @@ from django.db import models
 class Services(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='uploads/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)

@@ -9,6 +9,7 @@ app_name = 'about'
 
 router = DefaultRouter()
 router.register(prefix=r'about-us', viewset=AboutViewSet)
+# use http://127.0.0.1:8000/about/about-us/delete_all/ with method DELETE to call delete_all function
 
 
 urlpatterns = [

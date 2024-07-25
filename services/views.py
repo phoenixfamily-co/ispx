@@ -13,6 +13,7 @@ class ServicesViewSet(viewsets.ModelViewSet):
     queryset = Services.objects.all()
     serializer_class = ServicesSerializer
 
+    # use http://127.0.0.1:8000/services/services-view/delete_all/ with method DELETE to call delete_all function
     @action(detail=False, methods=['delete'])
     def delete_all(self, request):
         count, _ = Services.objects.all().delete()
