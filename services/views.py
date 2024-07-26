@@ -18,3 +18,13 @@ class ServicesViewSet(viewsets.ModelViewSet):
     def delete_all(self, request):
         count, _ = Services.objects.all().delete()
         return Response(f"All {count} Services instances were deleted.", status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=False, methods=['get'])
+    def by_category(self, request):
+        category_id = request.query_params.get('category_id')
+        if category_id is not None:
+            services = self.queryset.filter(categories__id=category_id)
+            serializer = self.get_serializer(services, many=True)
+            return Response(serializer.data)
+        else:
+            return Response({"error": "category_id query parameter is required"}, status=status.HTTP_400_BAD_REQUEST)
