@@ -8,6 +8,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from IranianShiningPhoenix.permissions import IsSuperUser
 
 
 @cache_page(60 * 15)
@@ -21,6 +22,7 @@ def home_view(request):
 class SliderViewSet(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializer
+    permission_classes = [IsSuperUser]
 
     @action(detail=False, methods=['delete'])
     def delete_all(self, request):
@@ -40,6 +42,7 @@ class SliderViewSet(viewsets.ModelViewSet):
 class CeoViewSet(viewsets.ModelViewSet):
     queryset = CEO.objects.all()
     serializer_class = CeoSerializer
+    permission_classes = [IsSuperUser]
 
     @action(detail=False, methods=['delete'])
     def delete_all(self, request):

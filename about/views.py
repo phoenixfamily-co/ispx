@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from about.models import About
 from about.serializers import AboutSerializer
+from IranianShiningPhoenix.permissions import IsSuperUser
 
 
 # Create your views here.
@@ -21,6 +22,7 @@ def about_view(request):
 class AboutViewSet(viewsets.ModelViewSet):
     queryset = About.objects.all()
     serializer_class = AboutSerializer
+    permission_classes = [IsSuperUser]
 
     # create a delete all method using action decorator, use http://127.0.0.1:8000/about/about-us/delete_all/ with
     # method DELETE to call delete_all function

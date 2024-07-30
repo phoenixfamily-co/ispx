@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'products.apps.ProductConfig',
     'category.apps.CategoryConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
 ]
 
@@ -109,6 +110,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
 
 
 # Internationalization

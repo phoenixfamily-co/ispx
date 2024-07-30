@@ -5,6 +5,7 @@ from .models import Category
 from .serializers import CategorySerializer
 from rest_framework.response import Response
 from rest_framework import status
+from IranianShiningPhoenix.permissions import IsSuperUser
 
 
 # Create your views here.
@@ -12,6 +13,7 @@ from rest_framework import status
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [IsSuperUser]
 
     @action(detail=False, methods=['delete'])
     def delete_all(self, request):

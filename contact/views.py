@@ -6,6 +6,7 @@ from IranianShiningPhoenix import settings
 from rest_framework.response import Response
 from rest_framework import status
 from .models import ContactInfo
+from IranianShiningPhoenix.permissions import IsSuperUser
 
 
 # Create your views here.
@@ -13,6 +14,7 @@ from .models import ContactInfo
 class ContactViewSet(viewsets.ModelViewSet):
     queryset = ContactInfo.objects.all()
     serializer_class = ContactSerializer
+    permission_classes = [IsSuperUser]
 
     def perform_create(self, serializer):
         contact = serializer.save()

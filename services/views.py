@@ -5,6 +5,7 @@ from .serializers import ServicesSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from IranianShiningPhoenix.permissions import IsSuperUser
 
 # Create your views here.
 
@@ -12,6 +13,7 @@ from rest_framework import status
 class ServicesViewSet(viewsets.ModelViewSet):
     queryset = Services.objects.all()
     serializer_class = ServicesSerializer
+    permission_classes = [IsSuperUser]
 
     # use http://127.0.0.1:8000/services/services-view/delete_all/ with method DELETE to call delete_all function
     @action(detail=False, methods=['delete'])
