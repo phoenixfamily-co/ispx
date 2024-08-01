@@ -11,7 +11,7 @@ router.register(prefix=r'', viewset=ContactViewSet)
 app_name = 'contract'
 
 urlpatterns = [
-    path('api/', include(router.urls, 'contract')),
+    path('api/', include(router.urls)),
     path("", contract_view, name='view'),
 
 ]
