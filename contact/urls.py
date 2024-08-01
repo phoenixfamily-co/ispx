@@ -8,7 +8,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(prefix=r'', viewset=ContactViewSet)
 
-app_name = 'contract'
+app_name = 'contact'
 
 urlpatterns = [
     path('api/', include(router.urls)),
