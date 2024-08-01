@@ -75,30 +75,6 @@ a
             display: inline-grid;
         }
 
-        .info {
-            width: 90%;
-            height: 320px;
-            background-color: rgba(48, 84, 180, 0.7);
-            margin-top: 20%;
-            margin-left: 5%;
-            margin-right: 5%;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            align-content: center;
-            align-self: center;
-        }
-
-        .info-container{
-            background-color: transparent;
-            height: 100%;
-            width: auto;
-            display: inline-block;
-            overflow: hidden;
-
-
-        }
-
         .info-container div{
             background-color: rgb(48, 84, 180);
             height: 200px;
@@ -322,7 +298,7 @@ a
           <a class="nav-link text-white" href="#">Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#" style="text-decoration: underline" >Contact</a>
+          <a class="nav-link text-white" href="{% url 'contract:view' %}" style="text-decoration: underline" >Contact</a>
         </li>
           <li class="nav-item">
           <a class="nav-link text-white" href="{% url 'about:view' %}">About</a>
@@ -336,34 +312,6 @@ a
     <img alt="" src="{% get_media_prefix%}simple-logo.png" class="logo">
 
 </div>
-
-{#<div class="info">#}
-{#    <div class="info-container">#}
-{#        <div>#}
-{#            <i class="fa-regular fa-envelope"></i>#}
-{#        </div>#}
-{#        <h4>Email</h4>#}
-{#        <h5>info@iranianshiningphoenix.com</h5>#}
-{#    </div>#}
-{##}
-{#    <div class="info-container" >#}
-{#         <div>#}
-{#             <i class="fa-brands fa-telegram"></i>#}
-{#        </div>#}
-{#        <h4> Telegram </h4>#}
-{#        <h5>@iranianshiningphoenix</h5>#}
-{#    </div>#}
-{##}
-{#    <div class="info-container">#}
-{#         <div>#}
-{#             <i class="fa-brands fa-whatsapp"></i>#}
-{#         </div>#}
-{#        <h4> Whatsapp </h4>#}
-{#        <button>Message</button>#}
-{#    </div>#}
-{##}
-{#</div>#}
-
 
 <h3 class="selected" >Contact us</h3>
 
