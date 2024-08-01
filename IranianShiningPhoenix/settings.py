@@ -138,10 +138,10 @@ MEDIA_URL = 'media/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_HOST = 'mail.iranianshiningphoenix.com'
+EMAIL_PORT = 993
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'mohammadmma3004@gmail.com'
-EMAIL_HOST_PASSWORD = 'bstr naro lqfe tjje'
+EMAIL_HOST_USER = 'customer@iranianshiningphoenix.com'
+EMAIL_HOST_PASSWORD = '9*hsX{?si6V,'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-COMPANY_EMAIL = 'aslmohammad10@gmail.com'
+COMPANY_EMAIL = 'ceo@iranianshiningphoenix.com'
