@@ -176,6 +176,16 @@ a
 
            }
 
+           input[type="file"] {
+               display: none;
+           }
+          .custom-file-upload {
+              border: 1px solid #ccc;
+              display: inline-block;
+              padding: 6px 12px;
+              cursor: pointer;
+          }
+
          @media screen and (max-width: 768px) {
 
 
@@ -354,8 +364,8 @@ a
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message . . ."></textarea>
   </div>
     <div class="form-group">
-    <label for="exampleFormControlFile1"></label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    <label for="exampleFormControlFile1" class="custom-file-upload"></label>
+    <input type="file" id="exampleFormControlFile1">
   </div>
 
     <button data-mdb-ripple-init type="submit">Send</button>
