@@ -1,20 +1,19 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
-
-from .views import home_view, SliderListCreateAPIView, SliderRetrieveUpdateDestroyAPIView, CeoListCreateAPIView, \
-    CeoRetrieveUpdateDestroyAPIView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import home_view, SliderViewSet, CeoViewSet
 
 
 app_name = 'home'
+router = DefaultRouter()
+router.register(r'slider', SliderViewSet)
+router.register(r'CEO', CeoViewSet)
 
 
 urlpatterns = [
     path("", home_view, name='view'),
-    path("sliders/", SliderListCreateAPIView.as_view(), name='customer-list-create'),
-    path("ceo/", CeoListCreateAPIView.as_view(), name='ceo-list-create'),
-    path("sliders/<int:pk>/", SliderRetrieveUpdateDestroyAPIView.as_view(), name='customer-detail'),
-    path("ceo/<int:pk>/", CeoRetrieveUpdateDestroyAPIView.as_view(), name='ceo-detail'),
+    path("", include(router.urls)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

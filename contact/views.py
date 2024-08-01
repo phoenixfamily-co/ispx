@@ -6,6 +6,7 @@ from .serializers import ContactSerializer
 from django.core.mail import EmailMessage
 from IranianShiningPhoenix import settings
 from .models import ContactInfo
+from IranianShiningPhoenix.permissions import IsSuperUser
 
 
 # Create your views here.
@@ -20,6 +21,7 @@ def contract_view(request):
 class ContactViewSet(viewsets.ModelViewSet):
     queryset = ContactInfo.objects.all()
     serializer_class = ContactSerializer
+    permission_classes = [IsSuperUser]
 
     def perform_create(self, serializer):
         contact = serializer.save()

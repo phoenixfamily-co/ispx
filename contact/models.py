@@ -8,4 +8,4 @@ class ContactInfo(models.Model):
     number = models.CharField(max_length=255)
     email = models.EmailField()
     message = models.TextField()
-    file = models.FileField(upload_to='uploads/', null=True, blank=True)
+    file = models.FileField(upload_to='files/', null=True, blank=True)

@@ -4,6 +4,11 @@ from rest_framework import generics
 from .models import Slider, CEO
 from .serializers import SliderSerializer, CeoSerializer
 from django.template import loader
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
+from IranianShiningPhoenix.permissions import IsSuperUser
 
 
 @cache_page(60 * 15)
@@ -14,21 +19,41 @@ def home_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class SliderListCreateAPIView(generics.ListCreateAPIView):
+class SliderViewSet(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializer
+    permission_classes = [IsSuperUser]
+
+    @action(detail=False, methods=['delete'])
+    def delete_all(self, request):
+        count, _ = Slider.objects.all().delete()
+        return Response(f"All {count} Services instances were deleted.", status=status.HTTP_204_NO_CONTENT)
 
 
-class SliderRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Slider.objects.all()
-    serializer_class = SliderSerializer
+# class SliderListCreateAPIView(generics.ListCreateAPIView):
+#     queryset = Slider.objects.all()
+#     serializer_class = SliderSerializer
+#
+#
+# class SliderRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Slider.objects.all()
+#     serializer_class = SliderSerializer
 
-
-class CeoListCreateAPIView(generics.ListCreateAPIView):
+class CeoViewSet(viewsets.ModelViewSet):
     queryset = CEO.objects.all()
     serializer_class = CeoSerializer
+    permission_classes = [IsSuperUser]
 
+    @action(detail=False, methods=['delete'])
+    def delete_all(self, request):
+        count, _ = Slider.objects.all().delete()
+        return Response(f"All {count} Services instances were deleted.", status=status.HTTP_204_NO_CONTENT)
 
-class CeoRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CEO.objects.all()
-    serializer_class = CeoSerializer
+# class CeoListCreateAPIView(generics.ListCreateAPIView):
+#     queryset = CEO.objects.all()
+#     serializer_class = CeoSerializer
+#
+#
+# class CeoRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = CEO.objects.all()
+#     serializer_class = CeoSerializer
