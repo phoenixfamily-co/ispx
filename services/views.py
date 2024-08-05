@@ -1,3 +1,6 @@
+from django.http import HttpResponse
+from django.template import loader
+from django.views.decorators.cache import cache_page
 from rest_framework import viewsets
 from .models import Services
 from .serializers import ServicesSerializer
@@ -6,7 +9,15 @@ from rest_framework.response import Response
 from rest_framework import status
 from IranianShiningPhoenix.permissions import IsSuperUser
 
+
 # Create your views here.
+
+@cache_page(60 * 15)
+def services_view(request):
+    template = loader.get_template('services.html')
+    context = {}
+
+    return HttpResponse(template.render(context, request))
 
 
 class ServicesViewSet(viewsets.ModelViewSet):

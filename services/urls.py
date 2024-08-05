@@ -1,6 +1,9 @@
+from django.conf.urls.static import static
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ServicesViewSet
+
+from IranianShiningPhoenix import settings
+from .views import ServicesViewSet , services_view
 
 router = DefaultRouter()
 router.register(r'services-view', ServicesViewSet)
@@ -8,6 +11,13 @@ router.register(r'services-view', ServicesViewSet)
 # for filter services by category: http://127.0.0.1:8000/services/services-view/by_category/?category_id=3
 # in services app for filtering by category i create a custom action using action decorator in views.py
 
+app_name = 'services'
+
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
+    path("", services_view, name='view'),
+
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
