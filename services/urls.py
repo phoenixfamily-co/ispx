@@ -9,5 +9,5 @@ router.register(r'services-view', ServicesViewSet)
 # in services app for filtering by category i create a custom action using action decorator in views.py
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]

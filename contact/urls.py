@@ -6,12 +6,12 @@ from .views import ContactViewSet, contract_view
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(prefix=r'', viewset=ContactViewSet)
+router.register(prefix=r'contact-us', viewset=ContactViewSet)
 
 app_name = 'contact'
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
     path("", contract_view, name='view'),
 
 ]

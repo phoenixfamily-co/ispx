@@ -9,5 +9,5 @@ router.register(r'products-view', ProductViewSet)
 # in product app for filtering by categories developed by django-filter package in view.py
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
