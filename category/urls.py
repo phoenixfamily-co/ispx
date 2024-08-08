@@ -7,5 +7,5 @@ router.register(r'category-view', CategoryViewSet)
 # category bulk delete: http://127.0.0.1:8000/category/category-view/delete_all/
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path("api/", include(router.urls)),
 ]

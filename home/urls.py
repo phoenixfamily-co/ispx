@@ -13,7 +13,7 @@ router.register(r'CEO', CeoViewSet)
 
 urlpatterns = [
     path("", home_view, name='view'),
-    path("", include(router.urls)),
+    path("api/", include(router.urls)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
