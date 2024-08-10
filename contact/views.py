@@ -11,7 +11,7 @@ from IranianShiningPhoenix.permissions import IsSuperUser
 
 # Create your views here.
 @cache_page(60 * 15)
-def contract_view(request):
+def contact_view(request):
     template = loader.get_template('contract.html')
     context = {}
 

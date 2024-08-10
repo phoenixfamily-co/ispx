@@ -2,7 +2,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 from IranianShiningPhoenix import settings
-from .views import ContactViewSet, contract_view
+from .views import ContactViewSet, contact_view
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -11,8 +11,9 @@ router.register(prefix=r'contact-us', viewset=ContactViewSet)
 app_name = 'contact'
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path("", contract_view, name='view'),
+
+    path("", contact_view, name='view'),
+    path('api/', include(router.urls)),
 
 ]
 
