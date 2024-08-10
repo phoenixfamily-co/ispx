@@ -154,10 +154,12 @@
           }
 
           @media (min-width: 576px) {
-    .card-group.card-group-scroll {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-    }
+              .card-group.card-group-scroll {
+                  overflow-x: auto;
+                  flex-wrap: nowrap;
+              }::-webkit-scrollbar {
+            display: none;
+        }
 }
 
 .card-group.card-group-scroll > .card {
