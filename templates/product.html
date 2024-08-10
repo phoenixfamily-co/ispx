@@ -96,8 +96,35 @@
              justify-content: center;
          }
 
+          .product-item {
+              width: 100% ;
+              height: auto ;
+              display: inline-flex ;
+              margin-top: 150px
+          }
+
+          .product-img{
+              width: 500px ;
+              height: 500px;
+              margin-left: 20px
+          }
+
 
          @media screen and (max-width: 768px) {
+
+             .product-item {
+                 margin-top: 100px;
+                 display: inline-block;
+             }
+
+             .product-img {
+                 width: 200px;
+                 height: 200px;
+                 margin-left: 20px;
+                 margin-right: 20px;
+             }
+
+
 
              .selected {
                  margin-top: 80px;
@@ -194,9 +221,9 @@
 
 </div>
 
-<div style="width: 100% ; height: auto ; display: inline-flex ; margin-top: 150px">
+<div class="product-item" >
     
-    <img src="{% get_media_prefix %}wash-wax.png" style="width: 500px ;height: 500px;margin-left: 20px">
+    <img src="{% get_media_prefix %}wash-wax.png" class="product-img">
 
     <div style="width: auto; margin-left: 20px ; margin-right: 20px">
 
