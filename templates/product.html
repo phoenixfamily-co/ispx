@@ -262,11 +262,46 @@
 <h3 class="selected" >How to use Phenix A1103?</h3>
 
 
-<div class="ratio ratio-16x9">
-  <iframe src="{% get_media_prefix %}Premium-DryWash- Aircraft.mp4" title="YouTube video" allowfullscreen style="margin-top: 30px"></iframe>
+<div class="videoplayer" id="myCustomPlayer" style="margin-top: 30px">
+   <div class="ratio ratio-16x9 bg-dark">
+      <video class="video" src="{% get_media_prefix %}Premium-DryWash- Aircraft.mp4"></video>
+   <div>
+   <div class="controls">
+      <button class="btn btn-lg btn-video-playpause" type="button" title="Play Video">
+          <i class="bi bi-play-fill"></i>
+          <i class="bi bi-pause-fill d-none"></i>
+      </button>
+      <div class="px-1 w-100">
+          <div class="progress w-100">
+              <div class="progress-bar"></div>
+          </div>
+      </div>
+      <button class="btn btn-lg btn-video-pip" title="Play picture in picture">
+          <i class="bi bi-pip"></i>
+      </button>
+      <button class="btn btn-lg btn-video-fullscreen">
+          <i class="bi bi-arrows-fullscreen"></i>
+      </button>
+      <div class="dropup">
+          <button class="btn btn-lg btn-video-volume" data-bs-toggle="dropdown" title="Volume">
+              <i class="bi bi-volume-mute-fill"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end dropup-volume">
+              <input type="range" class="form-range form-range-volume">
+          </div>
+      </div>
+      <div class="dropup">
+          <button class="btn btn-lg" data-bs-toggle="dropdown" title="More...">
+              <i class="bi bi-three-dots-vertical"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item" href="#">
+                  <i class="bi bi-info-circle-fill"></i> About
+              </a>
+          </div>
+      </div>
+   </div>
 </div>
-
-
 
 
 
