@@ -20,6 +20,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="plyr" level="application" />
     <orderEntry type="library" name="1228ed801f" level="application" />
+    <orderEntry type="library" name="plyr.polyfilled" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
