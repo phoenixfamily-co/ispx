@@ -7,6 +7,10 @@
 
     <script src="https://kit.fontawesome.com/1228ed801f.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+
 
     <title>{% block title %}درباره ی ققنوس درخشان ایرانیان{% endblock %}</title>
     {% load bootstrap5 %}
@@ -267,6 +271,9 @@
 </div>
 
 
+<video id="player" playsinline controls data-poster="{% get_media_prefix %}logo.jpg" style="--plyr-color-main: #1ac266;">>
+  <source src="{% get_media_prefix %}Premium-DryWash- Aircraft.mp4" type="video/mp4" />
+</video>
 
 
 
