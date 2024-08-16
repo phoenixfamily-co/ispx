@@ -27,7 +27,7 @@ class SliderViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['delete'])
     def delete_all(self, request):
         count, _ = Slider.objects.all().delete()
-        return Response(f"All {count} Services instances were deleted.", status=status.HTTP_204_NO_CONTENT)
+        return Response(f"All {count} Slider instances were deleted.", status=status.HTTP_204_NO_CONTENT)
 
 
 # class SliderListCreateAPIView(generics.ListCreateAPIView):
@@ -47,7 +47,7 @@ class CeoViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['delete'])
     def delete_all(self, request):
         count, _ = Slider.objects.all().delete()
-        return Response(f"All {count} Services instances were deleted.", status=status.HTTP_204_NO_CONTENT)
+        return Response(f"All {count} Ceo instances were deleted.", status=status.HTTP_204_NO_CONTENT)
 
 # class CeoListCreateAPIView(generics.ListCreateAPIView):
 #     queryset = CEO.objects.all()

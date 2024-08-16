@@ -26,6 +26,7 @@ from products.views import *
 from services.views import *
 from category.views import *
 from home.views import *
+from seo.views import ArticleViewSet
 
 router = DefaultRouter()
 router.register(prefix=r'about-us', viewset=AboutViewSet)
@@ -35,6 +36,7 @@ router.register(r'services-view', ServicesViewSet)
 router.register(r'category-view', CategoryViewSet)
 router.register(r'slider', SliderViewSet)
 router.register(r'CEO', CeoViewSet)
+router.register(r'seo', ArticleViewSet)
 
 
 urlpatterns = [
@@ -48,6 +50,7 @@ urlpatterns = [
                   path('products/', include('products.urls')),
                   path('services/', include('services.urls')),
                   path('category/', include('category.urls')),
+                  path('seo/', include('seo.urls')),
 
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

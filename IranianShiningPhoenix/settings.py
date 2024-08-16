@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'services.apps.ServicesConfig',
     'products.apps.ProductConfig',
     'category.apps.CategoryConfig',
+    'seo.apps.SeoConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
@@ -114,9 +115,10 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'IranianShiningPhoenix.permissions.IsSuperUser',
     ],
 }
 
