@@ -19,31 +19,48 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
-from rest_framework.routers import DefaultRouter
-from about.views import *
-from contact.views import *
-from products.views import *
-from services.views import *
-from category.views import *
-from home.views import *
-from seo.views import ArticleViewSet
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from .permissions import IsSuperUser
+from django.contrib.auth import views as auth_views
 
-router = DefaultRouter()
-router.register(prefix=r'about-us', viewset=AboutViewSet)
-router.register(prefix=r'contact-us', viewset=ContactViewSet)
-router.register(r'products-view', ProductViewSet)
-router.register(r'services-view', ServicesViewSet)
-router.register(r'category-view', CategoryViewSet)
-router.register(r'slider', SliderViewSet)
-router.register(r'CEO', CeoViewSet)
-router.register(r'seo', ArticleViewSet)
+# from rest_framework.routers import DefaultRouter
+# from about.views import *
+# from contact.views import *
+# from products.views import *
+# from services.views import *
+# from category.views import *
+# from home.views import *
+# from seo.views import ArticleViewSet
+#
+# router = DefaultRouter()
+# router.register(prefix=r'about-us', viewset=AboutViewSet)
+# router.register(prefix=r'contact-us', viewset=ContactViewSet)
+# router.register(r'products-view', ProductViewSet)
+# router.register(r'services-view', ServicesViewSet)
+# router.register(r'category-view', CategoryViewSet)
+# router.register(r'slider', SliderViewSet)
+# router.register(r'CEO', CeoViewSet)
+# router.register(r'seo', ArticleViewSet)
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title="ISPX APIs",
+        default_version='v1',
+        description="API docs",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="mohammadmma3004@gmail.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=False,
+    permission_classes=[IsSuperUser],
+)
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path("api-auth/", include("rest_framework.urls")),
                   path("api-token-auth/", obtain_auth_token),
-                  path("api/", include(router.urls)),
+                  # path("api/", include(router.urls)),
                   path('home/', include("home.urls")),
                   path('contact/', include("contact.urls")),
                   path('about/', include("about.urls")),
@@ -51,6 +68,8 @@ urlpatterns = [
                   path('services/', include('services.urls')),
                   path('category/', include('category.urls')),
                   path('seo/', include('seo.urls')),
-
+                  path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),
+                       name='schema-swagger-ui'),
+                  path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
