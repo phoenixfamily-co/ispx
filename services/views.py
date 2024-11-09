@@ -13,7 +13,7 @@ from IranianShiningPhoenix.permissions import IsSuperUser
 # Create your views here.
 
 @cache_page(60 * 15)
-def services_view(request, pk):
+def services_view(request):
     template = loader.get_template('services.html')
     context = {}
     return HttpResponse(template.render(context, request))
