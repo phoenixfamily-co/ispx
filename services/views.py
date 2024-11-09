@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets
+
+from category.models import Category
 from .models import Services
 from .serializers import ServicesSerializer
 from rest_framework.decorators import action
@@ -13,8 +15,9 @@ from IranianShiningPhoenix.permissions import IsSuperUser
 # Create your views here.
 
 @cache_page(60 * 15)
-def services_view(request):
+def services_view(request, pk):
     template = loader.get_template('services.html')
+    category = Category.objects.filter(id=pk)
     context = {}
     return HttpResponse(template.render(context, request))
 
