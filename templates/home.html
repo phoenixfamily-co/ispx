@@ -309,9 +309,16 @@
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="{% url 'home:view' %}" style="text-decoration: underline">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="{% url 'services:view' %}">Services</a>
-        </li>
+         <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Services</a>
+    <ul class="dropdown-menu">
+         {% for x in category %}
+             {% if x.type == "services" %}
+                 <li><a class="dropdown-item" href="">{{ x.name }}</a></li>
+             {% endif %} 
+         {% endfor %}
+    </ul>
+  </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="{% url 'product:view' %}">Product</a>
         </li>

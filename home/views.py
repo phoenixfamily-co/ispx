@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.views.decorators.cache import cache_page
 from rest_framework import generics
+
+from category.models import Category
 from .models import Slider, CEO
 from .serializers import SliderSerializer, CeoSerializer
 from django.template import loader
@@ -14,8 +16,10 @@ from IranianShiningPhoenix.permissions import IsSuperUser
 @cache_page(60 * 15)
 def home_view(request):
     template = loader.get_template('home.html')
-    context = {}
-
+    category = Category.objects.all()
+    context = {
+        'category': category
+    }
     return HttpResponse(template.render(context, request))
 
 
