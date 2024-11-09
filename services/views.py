@@ -18,8 +18,10 @@ from IranianShiningPhoenix.permissions import IsSuperUser
 def services_view(request, pk):
     template = loader.get_template('services.html')
     category = Category.objects.all()
+    services = Services.objects.filter(category=pk)
     context = {
-        'category':category
+        'category': category,
+        'services': services
     }
     return HttpResponse(template.render(context, request))
 

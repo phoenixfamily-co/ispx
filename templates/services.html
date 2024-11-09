@@ -308,122 +308,48 @@
 
 <div class="listHolder">
 
-    <div class="listItem">
+    {% for x in services %}
 
-        <div class="listTitle" style="float:right;">
-            Aircraft Window Polishing
-        </div>
-
-        <div class="listContent">
-
-        <img src="{% get_media_prefix %}window-polish.png" class="listImg">
-
-        <p class="listInfo">
-            Aircraft windows can get scratched or chipped by sand in the air.
-            <br>
-            Inspections per AMM guidelines determine if they need repair or replacement.
-            <br>
-            Small damages can often be polished, which is cheaper than replacement and maintains safety and clarity.
-            <br>
-            Polishing is done on-wing, saving costs and not needing a separate certificate.
-            <br>
-            Benefits include improved safety, better passenger experience, and longer-lasting cleanliness.
-            <br>
-            Polished windows take about 2 hours each and can be serviced at any suitable airport.
-        </p>
-
-            </div>
-
-    </div>
-
-    <div class="listItem" dir="rtl">
-
-        <div class="listTitle" style="float:left;">
-            Deep clean
-        </div>
-
-        <div class="listContent">
-
-        <img src="{% get_media_prefix %}deep-clean.png" class="listImg">
-
-        <p class="listInfo">
-           Proper and thorough cleaning of airplane cabins is crucial post-Covid,but reports indicate
-            <br>
-            they are less clean and safe than before.With air travel increasing and surpassing
-            <br>
-             pre-pandemic levels, combined with staffing issues, time constraints, and equipment shortages,
-            <br>
-            planes are dirty and travelers unhappy. While there is no industry-wide standard, some companies
-            <br>
-            prioritize cleaning.Deep cleaning involves all parts of the plane and can take hours,
-            <br>
-            varying from weekly to every 50 flight hours.Unlike other cleaning jobs,
-            <br>
-            airplane cleaning is challenging due to time pressures and cramped spaces.
-        </p>
-
-            </div>
-
-    </div>
-
+        {% if forloop.counter0|divisibleby:2 %}
 
     <div class="listItem">
 
         <div class="listTitle" style="float:right;">
-            Aircraft body polishing
+            {{ x.title }}
         </div>
 
         <div class="listContent">
 
-        <img src="{% get_media_prefix %}body-polish.png" class="listImg">
+        <img src="/media/{{ x.image }}" class="listImg">
 
         <p class="listInfo">
-            Regular aircraft body polishing protects and prolongs paint life,
-            <br>
-            removes oxidation, and reduces fuel consumption.
-            <br>
-            Exterior Paint Rejuvenation: Machine buffing restores and seals dull or oxidized paint,
-            <br>
-            offering a cost-effective alternative to repainting.
-            <br>
-            Underbody Polishing: Essential for detecting hydraulic leaks.
-            <br>
-            Brightwork Metal Polishing: Polishing to a mirror finish enhances beauty and removes
-            <br>
-            scratches from components like engine inlets and propeller spinners.
+            {{ x.descriptin|linebreaks }}
         </p>
 
             </div>
-
     </div>
+            {% else %}
 
-
-    <div class="listItem" dir="rtl">
+         <div class="listItem" dir="rtl">
 
         <div class="listTitle" style="float:left;">
-           Dry Wash
+            {{ x.title }}
         </div>
 
         <div class="listContent">
 
-        <img src="{% get_media_prefix %}dry-wash.png" class="listImg">
+        <img src="/media/{{ x.image }}" class="listImg">
 
         <p class="listInfo">
-            During each flight, aircraft accumulate dirt, which increases fuel consumption and reduces aerodynamics. Traditional cleaning uses over 6000 liters of water per wash, done 12-24 times a year.
-            <br>
-            Dry Washing Process: Applied manually, then removed with microfiber cloths, it requires 5 people and 8 hours per aircraft.
-            <br>
-            Advantages of Non-Water Dry Wash:
-            <br>
-            1.Saves millions of liters of water annually and reduces fuel consumption by keeping the aircraft cleaner longer.
-            <br>
-            2.Allows simultaneous maintenance work, unlike water washing.
+            {{ x.descriptin|linebreaks }}
         </p>
             </div>
 
-    </div>
+         </div>
 
+        {% endif %}
 
+    {% endfor %}
 
 </div>
 
