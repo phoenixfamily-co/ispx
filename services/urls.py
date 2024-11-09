@@ -15,7 +15,7 @@ app_name = 'services'
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path("", services_view, name='view'),
+    path("/<int:pk>/", services_view, name='services_view'),
 
 ]
 

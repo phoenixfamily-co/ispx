@@ -327,7 +327,7 @@
     <ul class="dropdown-menu">
          {% for x in category %}
              {% if x.type == "services" %}
-                 <li><a class="dropdown-item" href="">{{ x.name }}</a></li>
+                 <li><a class="dropdown-item" href="{% url 'services:services_view' x.id %}">{{ x.name }}</a></li>
              {% endif %} 
          {% endfor %}
     </ul>
