@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets
+
+from category.models import Category
 from .serializers import ContactSerializer
 from django.core.mail import EmailMessage
 from IranianShiningPhoenix import settings
@@ -13,7 +15,10 @@ from IranianShiningPhoenix.permissions import IsSuperUser
 @cache_page(60 * 15)
 def contact_view(request):
     template = loader.get_template('contract.html')
-    context = {}
+    category = Category.objects.all()
+    context = {
+        'category': category
+    }
 
     return HttpResponse(template.render(context, request))
 

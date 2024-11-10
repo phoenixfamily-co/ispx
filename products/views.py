@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets
+
+from category.models import Category
 from .models import Product
 from .serializers import ProductSerializer
 from rest_framework.decorators import action
@@ -17,7 +19,10 @@ from IranianShiningPhoenix.permissions import IsSuperUser
 @cache_page(60 * 15)
 def product_view(request):
     template = loader.get_template('product.html')
-    context = {}
+    category = Category.objects.all()
+    context = {
+        'category': category
+    }
 
     return HttpResponse(template.render(context, request))
 

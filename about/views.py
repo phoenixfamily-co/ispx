@@ -8,13 +8,17 @@ from rest_framework import status
 from about.models import About
 from about.serializers import AboutSerializer
 from IranianShiningPhoenix.permissions import IsSuperUser
+from category.models import Category
 
 
 # Create your views here.
 @cache_page(60 * 15)
 def about_view(request):
     template = loader.get_template('about.html')
-    context = {}
+    category = Category.objects.all()
+    context = {
+        'category': category
+    }
 
     return HttpResponse(template.render(context, request))
 
