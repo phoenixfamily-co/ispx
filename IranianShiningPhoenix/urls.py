@@ -14,12 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
-from rest_framework.routers import DefaultRouter
 from about.views import *
 from contact.views import *
 from products.views import *
@@ -27,27 +25,20 @@ from services.views import *
 from category.views import *
 from home.views import *
 
-router = DefaultRouter()
-router.register(prefix=r'about-us', viewset=AboutViewSet)
-router.register(prefix=r'contact-us', viewset=ContactViewSet)
-router.register(r'products-view', ProductViewSet)
-router.register(r'services-view', ServicesViewSet)
-router.register(r'category-view', CategoryViewSet)
-router.register(r'slider', SliderViewSet)
-router.register(r'CEO', CeoViewSet)
-
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path("api-auth/", include("rest_framework.urls")),
-                  path("api-token-auth/", obtain_auth_token),
-                  path("api/", include(router.urls)),
-                  path('home/', include("home.urls")),
-                  path('contact/', include("contact.urls")),
-                  path('about/', include("about.urls")),
-                  path('products/', include('products.urls')),
-                  path('services/', include('services.urls')),
-                  path('category/', include('category.urls')),
 
+    path('admin/', admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
+    path("api-token-auth/", obtain_auth_token),
+    path('home/', include("home.urls", namespace='home')),
+    path('contact/', include("contact.urls", namespace='contact')),
+    path('about/', include("about.urls", namespace='about')),
+    path('products/', include('products.urls', namespace='products')),
+    path('services/', include('services.urls', namespace='services')),
+    path('category/', include('category.urls', namespace='category')),
 
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
