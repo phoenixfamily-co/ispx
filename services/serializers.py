@@ -1,11 +1,8 @@
 from rest_framework import serializers
 from .models import Services
-from category.models import Category
 
 
 class ServicesSerializer(serializers.ModelSerializer):
-    categories = serializers.PrimaryKeyRelatedField(many=True, queryset=Category.objects.all())
-
     class Meta:
         model = Services
         fields = '__all__'
