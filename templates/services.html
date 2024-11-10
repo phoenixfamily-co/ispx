@@ -141,6 +141,7 @@
           .listContent{
               height: 350px ;
               width: 90% ;
+              position: absolute ;
               display: inline-flex
           }
 
@@ -321,9 +322,9 @@
 
         <img src="/media/{{ x.image }}" class="listImg">
 
-            <p class="listInfo">
-                {{ x.description|linebreaks }}
-            </p>
+        <p class="listInfo">
+            {{ x.description|linebreaks }}
+        </p>
 
         </div>
     </div>
