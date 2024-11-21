@@ -184,24 +184,25 @@
               display: inline-block;
           }
 
-                  .notification {
-                      background-color: #32CD32; /* سبز ملایم */
-                      color: white;
-                      width: 100%;
-                      height: 40px; /* ارتفاع مشخص */
-                      display: flex; /* فعال‌سازی فلکس‌باکس */
-                      justify-content: center; /* متن وسط */
-                      align-items: center; /* عناصر در محور عمودی وسط */
-                      font-size: 16px; /* اندازه متن */
-                      box-sizing: border-box; /* لحاظ کردن padding در عرض */
-                  }
+                   .notification {
+                       background-color: #32CD32; /* سبز ملایم */
+                       color: white;
+                       width: 100%;
+                       height: 40px; /* ارتفاع مشخص */
+                       display: flex; /* فعال‌سازی فلکس‌باکس */
+                       justify-content: center; /* متن وسط */
+                       align-items: center; /* عناصر در محور عمودی وسط */
+                       position: relative; /* برای قرارگیری آیکون در سمت راست */
+                       font-size: 16px; /* اندازه متن */
+                       box-sizing: border-box; /* لحاظ کردن padding در عرض */
+                       padding: 0 50px; /* فاصله برای جلوگیری از روی هم افتادن متن و آیکون */
+                   }
 
-        .notification i {
-            cursor: pointer;
-            font-size: 18px ;
-            right: 0;
-            float: right;
-            color: #ffffff ;
+         .notification i {
+            position: absolute; /* آیکون خارج از جریان معمول قرار می‌گیرد */
+            right: 15px; /* فاصله آیکون از سمت راست */
+            cursor: pointer; /* اشاره‌گر نشان‌دهنده قابلیت کلیک */
+            font-size: 18px; /* اندازه مناسب آیکون */
         }
 
 
