@@ -184,30 +184,26 @@
               display: inline-block;
           }
 
-          .notification {
-            background-color: #32CD32;
-            color: white;
-            width: 100%;
-            height: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px;
-            font-size: 16px;
-        }
+           .notification {
+               background-color: #32CD32; /* سبز ملایم */
+               color: white;
+               width: 100%;
+               height: 40px; /* ارتفاع کمی بزرگ‌تر */
+               display: flex; /* فعال‌سازی فلکس‌باکس */
+               justify-content: space-between; /* متن وسط، آیکون سمت راست */
+               align-items: center; /* عمودی متن و آیکون وسط */
+               padding: 0 15px; /* فاصله داخلی برای زیبایی */
+               font-size: 16px; /* اندازه متن مناسب */
+               box-sizing: border-box; /* لحاظ شدن padding در width */
+           }
 
         .notification i {
             cursor: pointer;
+            font-size: 18px ;
+            color: #ffffff ;
         }
 
-          .fa-xmark{
-              color: #ffffff ;
-              font-size: 25px ;
-              float: right ;
-              margin-right: 5px ;
-              vertical-align: center;
-              justify-content: center;
-          }
+
 
 
           @media (min-width: 576px) {
@@ -326,12 +322,16 @@
               .selected{
                   margin-top: 30px;
               }
-               .notification{
-                   height: 50px;
-                   overflow-wrap: break-word;
-                   word-wrap: break-word; /* پشتیبانی برای مرورگرهای قدیمی */
-                   text-align: left;
-                   padding-left: 5px;
+               .notification {
+                   background-color: #32CD32;
+                   color: white;
+                   width: 100%;
+                   height: 30px;
+                   display: flex;
+                   justify-content: space-between;
+                   align-items: center;
+                   padding: 0 10px;
+                   font-size: 16px;
                }
          }
 
