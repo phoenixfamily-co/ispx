@@ -365,7 +365,7 @@ a
 <h3 class="emailTitle" >Email us</h3>
 
 
-<form>
+<form method="post" action="{% url 'contact:email' %}" enctype="multipart/form-data">
     <div class="form-group">
     <label for="exampleFormControlName"></label>
     <input type="text" class="form-control" id="exampleFormControlName" placeholder="Name . . .">
