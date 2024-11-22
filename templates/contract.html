@@ -365,7 +365,7 @@ a
 <h3 class="emailTitle" >Email us</h3>
 
 
-<form method="post" action="{% url 'contact:email' %}" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
         <label for="name">Name</label>
@@ -389,7 +389,7 @@ a
         </label>
         <input name="file" type="file" id="exampleFormControlFile1" class="form-control">
     </div>
-    <button class="submit btn btn-primary" type="submit">Send</button>
+    <button class="submit" type="submit">Send</button>
 </form>
 
 
@@ -446,6 +446,32 @@ a
     </div>
   <!-- Copyright -->
 </footer>
+
+
+<script>
+    document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+
+    fetch("{% url 'contact:email' %}", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+            } else {
+                alert("Error: " + JSON.stringify(data.error));
+            }
+        })
+        .catch(error => console.error("Error:", error));
+});
+
+</script>
 
 </body>
 </html>

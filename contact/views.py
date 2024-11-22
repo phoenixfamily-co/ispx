@@ -1,6 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
+from django.views.generic import FormView
+
 from category.models import Category
 from django.core.mail import EmailMessage
 from rest_framework.views import APIView
@@ -21,35 +23,37 @@ def contact_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class EmailView(APIView):
-    def post(self, request, *args, **kwargs):
-        form = ContactForm(request.data, request.FILES)
-        if form.is_valid():
-            # اطلاعات فرم
-            name = form.cleaned_data['name']
-            phone = form.cleaned_data['phone']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
-            file = request.FILES.get('file')
+class EmailView(FormView):
+    form_class = ContactForm  # فرمی که استفاده می‌کنید
 
-            # ارسال ایمیل
-            email_subject = f"تماس از {name}"
-            email_body = f"نام: {name}\nشماره تماس: {phone}\nایمیل: {email}\n\nپیام:\n{message}"
+    def form_valid(self, form):
+        # اطلاعات فرم
+        name = form.cleaned_data['name']
+        phone = form.cleaned_data['phone']
+        email = form.cleaned_data['email']
+        message = form.cleaned_data['message']
+        file = form.cleaned_data.get('file')
 
-            email_message = EmailMessage(
-                email_subject,
-                email_body,
-                'customer@iranianshiningphoenix.com',  # فرستنده
-                ['your_email@example.com']  # گیرنده
-            )
+        # ارسال ایمیل
+        email_subject = f"تماس از {name}"
+        email_body = f"نام: {name}\nشماره تماس: {phone}\nایمیل: {email}\n\nپیام:\n{message}"
 
-            # اضافه کردن فایل ضمیمه
-            if file:
-                email_message.attach(file.name, file.read(), file.content_type)
+        email_message = EmailMessage(
+            email_subject,
+            email_body,
+            'customer@iranianshiningphoenix.com',  # فرستنده
+            ['ceo@iranianshiningphoenix.com']  # گیرنده
+        )
 
-            email_message.send()
+        # اضافه کردن فایل ضمیمه
+        if file:
+            email_message.attach(file.name, file.read(), file.content_type)
 
-            return Response({"message": "ایمیل با موفقیت ارسال شد"}, status=status.HTTP_200_OK)
+        email_message.send()
 
-        return Response({"error": "اطلاعات ارسالی معتبر نیست"}, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({"message": "ایمیل با موفقیت ارسال شد"}, status=200)
+
+    def form_invalid(self, form):
+        # نمایش خطاهای فرم
+        return JsonResponse({"error": form.errors}, status=400)
 
