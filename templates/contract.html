@@ -367,24 +367,24 @@ a
 
 <form method="post" action="{% url 'contact:email' %}" enctype="multipart/form-data">
     <div class="form-group">
-    <label for="exampleFormControlName"></label>
-    <input type="text" class="form-control" id="exampleFormControlName" placeholder="Name . . .">
+    <label for="name"></label>
+    <input name="name" type="text" class="form-control" id="name" placeholder="Name . . .">
   </div>
     <div class="form-group">
-    <label for="exampleFormControlNumber"></label>
-    <input type="tel" class="form-control" id="exampleFormControlNumber" placeholder="Number . . .">
+    <label for="phone"></label>
+    <input name="phone" type="tel" class="form-control" id="phone" placeholder="Number . . .">
   </div>
   <div class="form-group">
-    <label for="exampleFormControlEmail"></label>
-    <input type="email" class="form-control" id="exampleFormControlEmail" placeholder="name@example.com">
+    <label for="email"></label>
+    <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com">
   </div>
   <div class="form-group">
-    <label for="exampleFormControlTextarea1"></label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Message . . ."></textarea>
+    <label for="message"></label>
+    <textarea name="message" class="form-control" id="message" rows="4" placeholder="Message . . ."></textarea>
   </div>
     <div class="form-group">
-    <label for="exampleFormControlFile1" class="custom-file-upload"><i class="fa-solid fa-upload"></i>Upload</label>
-    <input type="file" id="exampleFormControlFile1">
+    <label for="file" class="custom-file-upload"><i class="fa-solid fa-upload"></i>Upload</label>
+    <input name="file" type="file" id="exampleFormControlFile1">
   </div>
 
     <button class="submit" onclick="location.reload()">Send</button>
