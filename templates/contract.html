@@ -366,6 +366,7 @@ a
 
 
 <form method="post" action="{% url 'contact:email' %}" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="form-group">
     <label for="name"></label>
     <input name="name" type="text" class="form-control" id="name" placeholder="Name . . .">
