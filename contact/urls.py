@@ -10,7 +10,7 @@ app_name = 'contact'
 urlpatterns = [
 
     path("", contact_view, name='view'),
-    path('api/', email_view, name='email'),
+    path('api/', EmailView.as_view(), name='email'),
 
 ]
 
