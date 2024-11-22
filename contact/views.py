@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
-from rest_framework import status
-from rest_framework.response import Response
-
 from category.models import Category
-from .forms import ContactForm
 from django.core.mail import EmailMessage
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .forms import ContactForm
 
 
 # Create your views here.
@@ -21,13 +21,10 @@ def contact_view(request):
     return HttpResponse(template.render(context, request))
 
 
-def email_view(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST, request.FILES)
+class EmailView(APIView):
+    def post(self, request, *args, **kwargs):
+        form = ContactForm(request.data, request.FILES)
         if form.is_valid():
-            # اگر از ModelForm استفاده می‌کنید
-            # form.save()
-
             # اطلاعات فرم
             name = form.cleaned_data['name']
             phone = form.cleaned_data['phone']
@@ -52,8 +49,7 @@ def email_view(request):
 
             email_message.send()
 
-            return Response(status=status.HTTP_200_OK)
-    else:
-        ContactForm()
+            return Response({"message": "ایمیل با موفقیت ارسال شد"}, status=status.HTTP_200_OK)
 
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "اطلاعات ارسالی معتبر نیست"}, status=status.HTTP_400_BAD_REQUEST)
+
