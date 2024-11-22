@@ -1,14 +1,12 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
-from rest_framework import viewsets
+from rest_framework import status
+from rest_framework.response import Response
 
 from category.models import Category
-from .serializers import ContactSerializer
+from .forms import ContactForm
 from django.core.mail import EmailMessage
-from IranianShiningPhoenix import settings
-from .models import ContactInfo
-from IranianShiningPhoenix.permissions import IsSuperUser
 
 
 # Create your views here.
@@ -23,76 +21,39 @@ def contact_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class ContactViewSet(viewsets.ModelViewSet):
-    queryset = ContactInfo.objects.all()
-    serializer_class = ContactSerializer
-    permission_classes = [IsSuperUser]
+def email_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST, request.FILES)
+        if form.is_valid():
+            # اگر از ModelForm استفاده می‌کنید
+            # form.save()
 
-    def perform_create(self, serializer):
-        contact = serializer.save()
+            # اطلاعات فرم
+            name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            file = request.FILES.get('file')
 
-        # id = serializer.validated_data['id']
-        name = serializer.validated_data['name']
-        number = serializer.validated_data['number']
-        email = serializer.validated_data['email']
-        message = serializer.validated_data['message']
-        file = serializer.validated_data.get('file', None)
+            # ارسال ایمیل
+            email_subject = f"تماس از {name}"
+            email_body = f"نام: {name}\nشماره تماس: {phone}\nایمیل: {email}\n\nپیام:\n{message}"
 
-        email_subject = f"New Service Request from {name}"
-        email_body = f"Name: {name}\nNumber: {number}\nEmail: {email}\nMessage:\n{message}"
+            email_message = EmailMessage(
+                email_subject,
+                email_body,
+                'customer@iranianshiningphoenix.com',  # فرستنده
+                ['your_email@example.com']  # گیرنده
+            )
 
-        email_message = EmailMessage(
-            subject=email_subject,
-            body=email_body,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[settings.COMPANY_EMAIL],
-        )
-        if file:
-            email_message.attach(file.name, file.read(), file.content_type)
-        email_message.send()
-        return contact
+            # اضافه کردن فایل ضمیمه
+            if file:
+                email_message.attach(file.name, file.read(), file.content_type)
 
-    def create(self, request, *args, **kwargs):
-        # Handle file in the request data if any
-        if 'file' in request.data:
-            request.data['file'] = request.FILES.get('file')
+            email_message.send()
 
-        return super().create(request, *args, **kwargs)
+            return Response(status=status.HTTP_200_OK)
+    else:
+        ContactForm()
 
-    def perform_update(self, serializer):
-        contact = serializer.save()
-
-        # id = serializer.validated_data['id']
-        name = serializer.validated_data.get('name', contact.name)
-        number = serializer.validated_data.get('number', contact.number)
-        email = serializer.validated_data.get('email', contact.email)
-        message = serializer.validated_data.get('message', contact.message)
-        file = serializer.validated_data.get('file', None)
-
-        email_subject = f"Update contact(:{name}) previous information."
-        email_body = f"Name: {name}\nNumber: {number}\nEmail: {email}\nMessage:\n{message}"
-
-        email_message = EmailMessage(
-            subject=email_subject,
-            body=email_body,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[settings.COMPANY_EMAIL],
-        )
-        if file:
-            email_message.attach(file.name, file.read(), file.content_type)
-        email_message.send()
-        return contact
-
-    def update(self, request, *args, **kwargs):
-        # Handle file in the request data if any
-        if 'file' in request.data:
-            request.data['file'] = request.FILES.get('file')
-
-        return super().update(request, *args, **kwargs)
-
-    def partial_update(self, request, *args, **kwargs):
-        if 'file' in request.data:
-            request.data['file'] = request.FILES.get('file')
-
-        kwargs['partial'] = True
-        return super().update(request, *args, **kwargs)
+    return Response(status=status.HTTP_400_BAD_REQUEST)

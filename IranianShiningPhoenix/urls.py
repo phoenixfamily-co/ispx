@@ -24,6 +24,7 @@ from products.views import *
 from services.views import *
 from category.views import *
 from home.views import *
+from IranianShiningPhoenix import settings
 
 
 urlpatterns = [
