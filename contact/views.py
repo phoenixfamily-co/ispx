@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
 from category.models import Category
@@ -30,8 +30,8 @@ class EmailView(APIView):
             message = form.cleaned_data['message']
             file = form.cleaned_data.get('file')
 
-            email_subject = f"تماس از {name}"
-            email_body = f"نام: {name}\nشماره تماس: {phone}\nایمیل: {email}\n\nپیام:\n{message}"
+            email_subject = f"Message from {name}"
+            email_body = f"Name: {name}\nPhone: {phone}\nEmail: {email}\n\nMessage:\n{message}"
 
             email_message = EmailMessage(
                 email_subject,
@@ -44,11 +44,11 @@ class EmailView(APIView):
                 email_message.attach(file.name, file.read(), file.content_type)
 
             try:
-                # ارسال ایمیل
+                # Send the email
                 email_message.send()
-                return Response({"message": "ایمیل با موفقیت ارسال شد"}, status=200)
+                return Response({"message": "Email successfully sent"}, status=200)
             except Exception as e:
-                # مدیریت خطاها در هنگام ارسال ایمیل
-                return Response({"error": f"خطا در ارسال ایمیل: {str(e)}"}, status=500)
+                # Handle errors while sending the email
+                return Response({"error": f"Error sending email: {str(e)}"}, status=500)
 
         return Response({"error": form.errors}, status=400)
