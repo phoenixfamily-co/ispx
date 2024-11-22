@@ -1,13 +1,10 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.cache import cache_page
-from django.views.generic import FormView
-
 from category.models import Category
 from django.core.mail import EmailMessage
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
 from .forms import ContactForm
 
 
@@ -46,9 +43,12 @@ class EmailView(APIView):
             if file:
                 email_message.attach(file.name, file.read(), file.content_type)
 
-            email_message.send()
-
-            return Response({"message": "ایمیل با موفقیت ارسال شد"}, status=200)
+            try:
+                # ارسال ایمیل
+                email_message.send()
+                return Response({"message": "ایمیل با موفقیت ارسال شد"}, status=200)
+            except Exception as e:
+                # مدیریت خطاها در هنگام ارسال ایمیل
+                return Response({"error": f"خطا در ارسال ایمیل: {str(e)}"}, status=500)
 
         return Response({"error": form.errors}, status=400)
-
