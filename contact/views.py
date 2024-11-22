@@ -23,38 +23,32 @@ def contact_view(request):
     return HttpResponse(template.render(context, request))
 
 
-class EmailView(FormView):
-    form_class = ContactForm  # فرمی که استفاده می‌کنید
-    template_name = 'contract.html'  # مسیر قالب
+class EmailView(APIView):
+    def post(self, request, *args, **kwargs):
+        form = ContactForm(request.data, request.FILES)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            file = form.cleaned_data.get('file')
 
-    def form_valid(self, form):
-        # اطلاعات فرم
-        name = form.cleaned_data['name']
-        phone = form.cleaned_data['phone']
-        email = form.cleaned_data['email']
-        message = form.cleaned_data['message']
-        file = form.cleaned_data.get('file')
+            email_subject = f"تماس از {name}"
+            email_body = f"نام: {name}\nشماره تماس: {phone}\nایمیل: {email}\n\nپیام:\n{message}"
 
-        # ارسال ایمیل
-        email_subject = f"تماس از {name}"
-        email_body = f"نام: {name}\nشماره تماس: {phone}\nایمیل: {email}\n\nپیام:\n{message}"
+            email_message = EmailMessage(
+                email_subject,
+                email_body,
+                'customer@iranianshiningphoenix.com',  # فرستنده
+                ['ceo@iranianshiningphoenix.com']  # گیرنده
+            )
 
-        email_message = EmailMessage(
-            email_subject,
-            email_body,
-            'customer@iranianshiningphoenix.com',  # فرستنده
-            ['ceo@iranianshiningphoenix.com']  # گیرنده
-        )
+            if file:
+                email_message.attach(file.name, file.read(), file.content_type)
 
-        # اضافه کردن فایل ضمیمه
-        if file:
-            email_message.attach(file.name, file.read(), file.content_type)
+            email_message.send()
 
-        email_message.send()
+            return Response({"message": "ایمیل با موفقیت ارسال شد"}, status=200)
 
-        return JsonResponse({"message": "ایمیل با موفقیت ارسال شد"}, status=200)
-
-    def form_invalid(self, form):
-        # نمایش خطاهای فرم
-        return JsonResponse({"error": form.errors}, status=400)
+        return Response({"error": form.errors}, status=400)
 
