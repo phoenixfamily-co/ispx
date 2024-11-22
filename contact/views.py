@@ -25,6 +25,7 @@ def contact_view(request):
 
 class EmailView(FormView):
     form_class = ContactForm  # فرمی که استفاده می‌کنید
+    template_name = 'contract.html'  # مسیر قالب
 
     def form_valid(self, form):
         # اطلاعات فرم
