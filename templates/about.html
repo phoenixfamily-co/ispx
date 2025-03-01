@@ -230,7 +230,7 @@
         <div id="certificatesCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
             <div class="carousel-inner">
                 {% for x in certificate %}
-                <div class="carousel-item active">
+                <div class="carousel-item active mt-3">
                     <div class="card text-center shadow p-3">
                     <img src="/media/{{ x.image }}" class="card-img-top w-50 mx-auto" alt="{{ x.title }}">
                         <div class="card-body">
@@ -251,7 +251,7 @@
         </div>
         <div class="row d-none d-md-flex">
             {% for x in certificate %}
-            <div class="col-md-4">
+            <div class="col-md-4 mt-3">
                 <div class="card text-center shadow p-3">
                     <img src="/media/{{ x.image }}" class="card-img-top w-50 mx-auto" alt="{{ x.title }}">
                     <div class="card-body">
