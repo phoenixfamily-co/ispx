@@ -229,28 +229,18 @@
         <h2 class="text-center mb-4">مدارک بین‌المللی</h2>
         <div id="certificatesCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
             <div class="carousel-inner">
+                {% for x in certificate %}
                 <div class="carousel-item active">
                     <div class="card text-center shadow p-3">
-                    <img src="{% get_media_prefix %}photo_2025-02-25_09-50-57.jpg" class="card-img-top w-50 mx-auto" alt="مدرک 1">
+                    <img src="/media/{{ x.image }}" class="card-img-top w-50 mx-auto" alt="{{ x.title }}">
                         <div class="card-body">
-                            <h5 class="card-title">ISO 9001</h5>
-                            <p class="card-text">گواهینامه استاندارد مدیریت کیفیت</p>
-                            <a href="#" class="btn btn-primary">مشاهده</a>
-                            <a href="#" class="btn btn-outline-secondary">دانلود PDF</a>
+                        <h5 class="card-title">{{ x.title }}</h5>
+                        <p class="card-text">{{ x.description }}</p>
+                            <a href="#" class="btn btn-primary">View</a>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="card text-center shadow p-3">
-                    <img src="{% get_media_prefix %}photo_2025-02-25_09-50-57.jpg" class="card-img-top w-50 mx-auto" alt="مدرک 1">
-                        <div class="card-body">
-                            <h5 class="card-title">ISO 27001</h5>
-                            <p class="card-text">گواهینامه امنیت اطلاعات</p>
-                            <a href="#" class="btn btn-primary">مشاهده</a>
-                            <a href="#" class="btn btn-outline-secondary">دانلود PDF</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#certificatesCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -260,28 +250,18 @@
             </button>
         </div>
         <div class="row d-none d-md-flex">
+            {% for x in certificate %}
             <div class="col-md-4">
                 <div class="card text-center shadow p-3">
-                    <img src="{% get_media_prefix %}photo_2025-02-25_09-50-57.jpg" class="card-img-top w-50 mx-auto" alt="مدرک 1">
+                    <img src="/media/{{ x.image }}" class="card-img-top w-50 mx-auto" alt="{{ x.title }}">
                     <div class="card-body">
-                        <h5 class="card-title">ISO 9001</h5>
-                        <p class="card-text">گواهینامه استاندارد مدیریت کیفیت</p>
-                        <a href="#" class="btn btn-primary">مشاهده</a>
-                        <a href="#" class="btn btn-outline-secondary">دانلود PDF</a>
+                        <h5 class="card-title">{{ x.title }}</h5>
+                        <p class="card-text">{{ x.description }}</p>
+                        <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card text-center shadow p-3">
-                    <img src="{% get_media_prefix %}photo_2025-02-25_09-50-57.jpg" class="card-img-top w-50 mx-auto" alt="مدرک 1">
-                    <div class="card-body">
-                        <h5 class="card-title">ISO 27001</h5>
-                        <p class="card-text">گواهینامه امنیت اطلاعات</p>
-                        <a href="#" class="btn btn-primary">مشاهده</a>
-                        <a href="#" class="btn btn-outline-secondary">دانلود PDF</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 

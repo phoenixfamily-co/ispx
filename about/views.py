@@ -18,8 +18,10 @@ from category.models import Category
 def about_view(request):
     template = loader.get_template('about.html')
     category = Category.objects.all()
+    certificate = Certificate.objects.all()
     context = {
-        'category': category
+        'category': category,
+        'certificate' : certificate
     }
 
     return HttpResponse(template.render(context, request))
