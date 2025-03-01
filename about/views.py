@@ -5,8 +5,10 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
-from about.models import About
-from about.serializers import AboutSerializer
+from rest_framework.viewsets import ModelViewSet
+
+from about.models import About, Certificate
+from about.serializers import AboutSerializer, CertificateSerializer
 from IranianShiningPhoenix.permissions import IsSuperUser
 from category.models import Category
 
@@ -34,3 +36,8 @@ class AboutViewSet(viewsets.ModelViewSet):
     def delete_all(self, request):
         count, _ = About.objects.all().delete()
         return Response(f"All {count} About instances were deleted.", status=status.HTTP_204_NO_CONTENT)
+
+
+class CertificateView(ModelViewSet):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer

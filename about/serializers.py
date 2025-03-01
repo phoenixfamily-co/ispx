@@ -6,3 +6,9 @@ class AboutSerializer(serializers.ModelSerializer):
     class Meta:
         model = About
         fields = '__all__'
+
+
+class CertificateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = About
+        fields = '__all__'

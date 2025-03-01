@@ -10,3 +10,9 @@ class About(models.Model):
     side_image = models.ImageField(upload_to='images/', null=True, blank=True)
     telegram_id = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField()
+
+
+class Certificate(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
