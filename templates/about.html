@@ -148,6 +148,15 @@
             display: none; /* مخفی کردن اسکرول‌بار در کروم و سافاری */
         }
 
+        .vision-card {
+            background: white !important;
+            scroll-snap-align: center; /* مرکز چین شدن کارت‌ها */
+            transition: transform 0.3s ease-in-out; /* انیمیشن برای حس بهتر */
+            flex: 0 0 80%; /* هر کارت دقیقاً اندازه کل عرض صفحه */
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
 
         @media screen and (max-width: 768px) {
 
@@ -275,7 +284,7 @@
     <br>
     This company is trying to open a new market in providing services to airlines by transferring and using new but
     simple, cost-effective and effective methods, materials and tools in Iran's aviation. A service that, in addition to
-    increasing the safety and interest of passengers to use flight services in their travels, also results in reducing
+    increasing the safety and interest of passengers to use flight services on their travels, also results in reducing
     the costs and profitability of airlines.
 </p>
 
@@ -289,14 +298,12 @@
     <div class="vision-container d-flex gap-4 overflow-x-auto py-3 px-2 ">
         {% for x in certificate %}
 
-            <div class="carousel-item active mt-3">
-                <div class="card text-center shadow p-3">
-                    <img src="/media/{{ x.image }}" class="card-img-top w-50 mx-auto" alt="{{ x.title }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ x.title }}</h5>
-                        <p class="card-text">{{ x.description }}</p>
-                        <a href="#" class="btn btn-primary">View</a>
-                    </div>
+            <div class="vision-card card p-4 shadow">
+                <img src="/media/{{ x.image }}" class="card-img-top w-50 mx-auto" alt="{{ x.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ x.title }}</h5>
+                    <p class="card-text">{{ x.description }}</p>
+                    <a href="#" class="btn btn-primary">View</a>
                 </div>
             </div>
 
